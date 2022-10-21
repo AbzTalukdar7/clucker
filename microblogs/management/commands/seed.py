@@ -9,7 +9,7 @@ class Command(BaseCommand):
         self.faker = Faker('en_GB')
 
     def handle(self, *args, **options):
-        args = 1
+        args = 100
         Faker.seed(args)
 
         for i in range (args):
@@ -21,7 +21,8 @@ class Command(BaseCommand):
                 last_name = tempLname,
                 email = f'{tempFname}{tempLname}@outlook.com',
                 password = f'{tempFname}{tempLname}{random.randint(0,999)}',
-                bio = f'{self.faker.paragraph()}'
+                bio = f'{self.faker.paragraph()}',
+                is_superuser = False
             )
             self.user.full_clean()
             self.user.save()

@@ -8,4 +8,7 @@ class Command(BaseCommand):
         self.faker = Faker('en_GB')
 
     def handle(self, *args, **options):
-        print("WARNING:Unseed not implemented")
+        for item in models.User.objects.all():
+            if item.is_superuser == False:
+                item.delete()
+        print("DONE")
