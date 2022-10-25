@@ -1,9 +1,12 @@
 <html>
 <head>
-  <title>Clcuker</title>
+  <title>Clucuker</title>
 </head>
   <body>
     <h1>Log in</h1>
+    {% for message in messages %}
+      <P><b>{{ message }}</b></p>
+    {% endfor %}
     <form action = "{% url 'log_in'%}" method="post">
       {% csrf_token %}
       {{ form.as_p }}
